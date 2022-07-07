@@ -41,4 +41,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           aws s3 cp nodejs-hello-world.zip s3://static.cumul.io/sample-server/nodejs-hello-world.zip
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/sample-server/nodejs-hello-world.zip"
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/sample-server/nodejs-hello-world.zip"
