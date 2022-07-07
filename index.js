@@ -14,17 +14,17 @@ const data = JSON.stringify({
     "type": "sso",
     "expiry": "24 hours",
     "inactivity_interval": "1 year",
-    "username": "user_1",
+    "username": process.env.USER_USERNAME,
     "name": process.env.USER_NAME,
     "email": process.env.USER_EMAIL,
-    "suborganization": "user_1",
+    "suborganization": process.env.USER_SUBORGANIZATION,
     "role": "viewer"
   }
 });
 
 var config = {
   method: 'post',
-  url: 'https://api.cumul.io/0.1.0/authorization',
+  url: `${process.env.API_URL || 'https://api.cumul.io'}/0.1.0/authorization`,
   headers: { 
     'Content-Type': 'application/json'
   },
@@ -39,10 +39,19 @@ const port = 3000;
 app.get('/', (req, res) => {
   axios(config)
   .then(function (response) {
-    res.json(response.data);
+    const resp = {
+      status: 'success',
+      key: response.data.id,
+      token: response.data.token
+    };
+    res.json(resp);
   })
   .catch(function (error) {
-    res.json(error);
+    const resp = {
+      status: 'failed',
+      error
+    };
+    res.json(resp);
   });
 });
 
