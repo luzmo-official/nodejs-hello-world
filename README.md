@@ -1,3 +1,9 @@
-# test-server
+# nodejs-hello-world
 
-Jenkins configuration 2/Infinity
+## Usage
+
+```sh
+npm install
+npm start
+```
+
