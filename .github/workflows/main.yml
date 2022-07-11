@@ -37,7 +37,7 @@ jobs:
       - name: Zip File
         run: |
           rm -rf nodejs-hello-world.zip
-          zip -r nodejs-hello-world.zip * .env.example *.* .*
+          zip -r nodejs-hello-world.zip * .env.example
 
       # Runs a set of commands using the runners shell
       - name: Upload an invalidate
